@@ -24,7 +24,7 @@
     </form>
     <p id="message"></p>
   </div>
-  <script>
+<script>
     document.getElementById('signupForm').addEventListener('submit', async (e) => {
       e.preventDefault();
       const email = document.getElementById('email').value;
@@ -44,15 +44,20 @@
           messageEl.textContent = 'Hesabınız başarıyla oluşturuldu! Şifreniz e-posta adresinize gönderildi.';
           messageEl.style.color = 'green';
         } else {
-          messageEl.textContent = 'Hata: ' + data.message;
+          // Eğer detaylı hata varsa göster
+          let errorMessage = 'Hata: ' + data.message;
+          if (data.detail) {
+            errorMessage += ' Detay: ' + data.detail;
+          }
+          messageEl.textContent = errorMessage;
           messageEl.style.color = 'red';
         }
 
       } catch (error) {
-        messageEl.textContent = 'Sunucuya bağlanırken bir hata oluştu.';
+        messageEl.textContent = 'Sunucuya bağlanırken bir hata oluştu. Lütfen daha sonra tekrar deneyin.';
         messageEl.style.color = 'red';
       }
     });
-  </script>
+</script>
 </body>
 </html>
