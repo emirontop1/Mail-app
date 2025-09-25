@@ -3,7 +3,7 @@ import nodemailer from 'nodemailer';
 // Buraya kendi Gmail bilgilerinizi girin.
 // BU YÖNTEM GÜVENLİ DEĞİLDİR!
 const GMAIL_USER = 'emrozlemr@gmail.com'; 
-const GMAIL_APP_PASSWORD = 'addd aygm repa bzry';
+const GMAIL_APP_PASSWORD = 'adddaygmrepabzry';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
