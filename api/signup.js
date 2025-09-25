@@ -24,7 +24,7 @@ export default async function handler(req, res) {
   // Yeni bir şifre oluştur
   const newPassword = generatePassword();
 
-  // Gmail Uygulama Şifresi ile Transporter Oluşturma
+  // Vercel'deki G_User ve G_Key değişkenlerini kullan
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
