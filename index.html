@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hesap Oluştur</title>
+  <title>E-posta Gönder</title>
   <style>
     body { font-family: sans-serif; padding: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; margin: 0; background-color: #f4f4f9; }
     .container { background-color: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 100%; max-width: 400px; text-align: center; }
@@ -17,23 +17,23 @@
 </head>
 <body>
   <div class="container">
-    <h1>Yeni Hesap Oluştur</h1>
-    <form id="signupForm">
+    <h1>Merhaba E-postası Gönder</h1>
+    <form id="mailForm">
       <input type="email" id="email" placeholder="E-posta Adresiniz" required>
-      <button type="submit">Hesap Oluştur</button>
+      <button type="submit">E-posta Gönder</button>
     </form>
     <p id="message"></p>
   </div>
   <script>
-    document.getElementById('signupForm').addEventListener('submit', async (e) => {
+    document.getElementById('mailForm').addEventListener('submit', async (e) => {
       e.preventDefault();
       const email = document.getElementById('email').value;
       const messageEl = document.getElementById('message');
-      messageEl.textContent = 'Hesap oluşturuluyor...';
+      messageEl.textContent = 'E-posta gönderiliyor...';
       messageEl.style.color = '#555';
 
       try {
-        const response = await fetch('/api/signup', {
+        const response = await fetch('/api/send-mail', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email })
@@ -41,7 +41,7 @@
         const data = await response.json();
         
         if (response.ok) {
-          messageEl.textContent = 'Hesabınız başarıyla oluşturuldu! Şifreniz e-posta adresinize gönderildi.';
+          messageEl.textContent = 'E-posta başarıyla gönderildi!';
           messageEl.style.color = 'green';
         } else {
           let errorMessage = 'Hata: ' + data.message;
