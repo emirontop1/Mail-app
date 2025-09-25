@@ -3,17 +3,7 @@ import nodemailer from 'nodemailer';
 // Buraya kendi Gmail bilgilerinizi girin.
 // BU YÖNTEM GÜVENLİ DEĞİLDİR!
 const GMAIL_USER = 'emrozlemr@gmail.com'; 
-const GMAIL_APP_PASSWORD = 'addd aygm repa bzry'; 
-
-// Rastgele bir şifre oluşturan fonksiyon
-function generatePassword(length = 8) {
-  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()';
-  let password = '';
-  for (let i = 0; i < length; i++) {
-    password += chars.charAt(Math.floor(Math.random() * chars.length));
-  }
-  return password;
-}
+const GMAIL_APP_PASSWORD = 'addd aygm repa bzry';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -26,8 +16,6 @@ export default async function handler(req, res) {
     return res.status(400).json({ message: 'Email is required' });
   }
 
-  const newPassword = generatePassword();
-
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -39,13 +27,10 @@ export default async function handler(req, res) {
   const mailOptions = {
     from: GMAIL_USER,
     to: email,
-    subject: 'Yeni Hesap Şifreniz',
+    subject: 'Merhaba Mesajınız',
     html: `
-      <h1>Hesabınız Oluşturuldu!</h1>
-      <p>Merhaba,</p>
-      <p>Hesabınız başarıyla oluşturuldu. İşte giriş şifreniz:</p>
-      <h2>${newPassword}</h2>
-      <p>Güvenliğiniz için bu şifreyi kimseyle paylaşmayınız.</p>
+      <h1>Merhaba!</h1>
+      <p>Bu, size gönderdiğimiz basit bir test mesajıdır.</p>
     `,
   };
 
