@@ -51,6 +51,7 @@ export default async function handler(req, res) {
     return res.status(200).json({ message: 'E-posta başarıyla gönderildi.' });
   } catch (error) {
     console.error('E-posta gönderme hatası:', error);
-    return res.status(500).json({ message: 'E-posta gönderilirken bir hata oluştu.' });
+    // Hatanın detayını istemciye gönderin
+    return res.status(500).json({ message: 'E-posta gönderilirken bir hata oluştu.', detail: error.message });
   }
 }
